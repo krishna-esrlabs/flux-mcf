@@ -1,0 +1,188 @@
+Project default: Lib {
+
+  LibraryConfig Lib {
+    Files "src/*.cpp"
+    ExcludeFiles "src/Shmem*.cpp"
+
+    IncludeDir "include", inherit: true
+
+    Dependency mcf_core
+    ExternalLibrary zmq
+    ExternalLibrary pthread
+  }
+
+ LibraryConfig ShmemLib {
+    Files "src/*.cpp"
+
+    IncludeDir "include", inherit: true
+
+    Dependency mcf_core
+
+    Toolchain {
+      Compiler CPP {
+        Flags add: "-DHAVE_SHMEM"
+      }
+    }
+
+    ExternalLibrary rt
+    ExternalLibrary pthread
+    ExternalLibrary zmq
+ }
+
+  ExecutableConfig UnitTestBase {
+    Files "test/src/remote_status_tracker_test.cpp"
+    Files "test/src/zmq_msgpack_test.cpp"
+    Files "test/src/remote_service_test.cpp"
+    Files "test/src/remote_service_configurator_test.cpp"
+    Files "test/src/remote_control_test.cpp"
+
+    Dependency mcf_core
+    Dependency config: ShmemLib
+    Dependency config: RcTestEngine
+    Dependency googletest
+  }
+
+  ExecutableConfig RcTestEngine {
+    ArtifactName "rcTestEngine"
+    Files "test/src/rc_test_main.cpp"
+
+    Dependency mcf_core
+    Dependency mcf_remote_value_types 
+    Dependency CLI11
+    Dependency config: ShmemLib
+    DefaultToolchain GCC {
+      Linker {
+        # include absolute path to library directory
+        Flags add: "-Wl,-rpath,$(MainProjectDir)$(/)$(OutputDir, $(MainProjectName), $(MainConfigName))"
+      }
+    }
+  }
+
+  ExecutableConfig CommunicationTestEngine {
+    ArtifactName "communicationTestEngine"
+    Files "test/src/communication_test_main.cpp"
+    Files "src/Remote.cpp"
+    Files "src/RemoteControl.cpp"
+    Files "src/SerializedValue.cpp"
+
+    IncludeDir "include"
+
+    Dependency mcf_core
+    Dependency mcf_remote_value_types
+    Dependency CLI11
+    DefaultToolchain GCC {
+      Linker {
+        # include absolute path to library directory
+        Flags add: "-Wl,-rpath,$(MainProjectDir)$(/)$(OutputDir, $(MainProjectName), $(MainConfigName))"
+      }
+    }
+  }
+
+  ExecutableConfig Simple {
+    ArtifactName "simple"
+    Files "test/src/simple.cpp"
+
+    IncludeDir "include"
+
+    Dependency config: Lib
+
+    DefaultToolchain GCC {
+      Compiler CPP {
+        Flags "-g --std=c++14 -O3 -fPIC"
+      }
+      Linker {
+        # include absolute path to library directory
+        Flags add: "-Wl,-rpath,$(MainProjectDir)$(/)$(OutputDir, $(MainProjectName), $(MainConfigName))"
+        LibPostfixFlags "-lpthread -lzmq"
+      }
+    }
+  }
+
+  ExecutableConfig Generator {
+    ArtifactName "generator"
+    Files "test/src/generator.cpp"
+
+    IncludeDir "include"
+
+    Dependency mcf_remote_value_types 
+    Dependency mcf_remote, config: ShmemLib
+    Dependency CLI11
+
+    DefaultToolchain GCC {
+      Compiler CPP {
+        Flags "-g --std=c++14 -O3 -fPIC"
+      }
+      Linker {
+        # include absolute path to library directory
+        Flags add: "-Wl,-rpath,$(MainProjectDir)$(/)$(OutputDir, $(MainProjectName), $(MainConfigName))"
+        LibPostfixFlags "-lzmq"
+      }
+    }
+
+  }
+
+  ExecutableConfig Responder {
+    ArtifactName "responder"
+    Files "test/src/responder.cpp"
+
+    IncludeDir "include"
+
+    Dependency mcf_remote_value_types 
+    Dependency mcf_remote, config: ShmemLib
+    Dependency CLI11
+
+    DefaultToolchain GCC {
+      Compiler CPP {
+        Flags "-g --std=c++14 -O3 -fPIC"
+      }
+      Linker {
+        # include absolute path to library directory
+        Flags add: "-Wl,-rpath,$(MainProjectDir)$(/)$(OutputDir, $(MainProjectName), $(MainConfigName))"
+        LibPostfixFlags "-lzmq"
+      }
+    }
+  }
+
+  ExecutableConfig PerfReceiver {
+    ArtifactName "receiver"
+    Files "test/perf/receiver.cpp"
+
+    IncludeDir "include"
+    IncludeDir "test/perf"
+
+    Dependency config: Lib
+
+    DefaultToolchain GCC {
+      Compiler CPP {
+        Flags "-g --std=c++14 -O3 -fPIC"
+      }
+      Linker {
+        # include absolute path to library directory
+        Flags add: "-Wl,-rpath,$(MainProjectDir)$(/)$(OutputDir, $(MainProjectName), $(MainConfigName))"
+        LibPostfixFlags "-lpthread -lzmq"
+      }
+    }
+  }
+
+  ExecutableConfig PerfSender {
+    ArtifactName "sender"
+    Files "test/perf/sender.cpp"
+
+    IncludeDir "include"
+    IncludeDir "test/perf"
+
+    Dependency config: Lib
+
+    DefaultToolchain GCC {
+      Compiler CPP {
+        Flags "-g --std=c++14 -O3 -fPIC"
+      }
+      Linker {
+        # include absolute path to library directory
+        Flags add: "-Wl,-rpath,$(MainProjectDir)$(/)$(OutputDir, $(MainProjectName), $(MainConfigName))"
+        LibPostfixFlags "-lpthread -lzmq"
+      }
+    }
+  }
+
+}

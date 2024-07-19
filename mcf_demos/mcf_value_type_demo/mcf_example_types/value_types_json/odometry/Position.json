@@ -1,0 +1,25 @@
+{
+    "Doc": "3 dimensional position consisting of x, y, z",
+    "Kind": "Struct",
+    "Attributes":
+    {
+        "x":
+        {
+            "Type": "float",
+            "DefaultValue" : 0.0,
+            "Doc": "x position"
+        },
+        "y":
+        {
+            "Type": "float",
+            "DefaultValue" : 0.0,
+            "Doc": "y position"
+        },
+        "z":
+        {
+            "Type": "float",
+            "DefaultValue" : 0.0,
+            "Doc": "z position"
+        }
+    }
+}

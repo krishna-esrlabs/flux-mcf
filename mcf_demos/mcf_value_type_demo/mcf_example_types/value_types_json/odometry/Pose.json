@@ -1,0 +1,17 @@
+{
+    "Doc": "Pose consisting of x, y, z position and 3D rotation matrix.",
+    "Kind": "Value",
+    "Attributes":
+    {
+        "position":
+        {
+            "Type": "Position",
+            "Doc": "position"
+        },
+        "rotation":
+        {
+            "Type": "Rotation",
+            "Doc": "3D rotation matrix"
+        }
+    }
+}

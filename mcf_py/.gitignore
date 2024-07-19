@@ -1,0 +1,7 @@
+*.so
+.cache
+*.png
+.idea
+__pycache__/
+out/
+mcf.egg-info

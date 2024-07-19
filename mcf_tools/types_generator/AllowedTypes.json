@@ -1,0 +1,141 @@
+{
+    "SystemTypes":
+    {
+        "bool":
+        {
+            "CppName": "bool",
+            "PyName": "bool",
+            "FlatBufferName": "bool",
+            "Type": "Primitive"
+        },
+        "double":
+        {
+            "CppName": "double",
+            "PyName": "float",
+            "FlatBufferName": "double",
+            "Type": "Primitive"
+        },
+        "float":
+        {
+            "CppName": "float",
+            "PyName": "float",
+            "FlatBufferName": "float",
+            "Type": "Primitive"
+        },
+        "int":
+        {
+            "CppName": "int",
+            "PyName": "int",
+            "FlatBufferName": "int32",
+            "Type": "Primitive"
+        },
+        "map":
+        {
+            "CppName": "std::map",
+            "CppInclude": "map",
+            "PyName": "Dict",
+            "PyInclude": "Dict",
+            "FlatBufferName": "Map",
+            "Type": "Container"
+        },
+        "pair":
+        {
+            "CppName": "std::pair",
+            "CppInclude": "utility",
+            "PyName": "Tuple",
+            "PyInclude": "Tuple",
+            "FlatBufferName": "Tuple",
+            "Type": "Container"
+        },
+        "set":
+        {
+            "CppName": "std::set",
+            "CppInclude": "set",
+            "PyName": "List",
+            "PyInclude": "List",
+            "FlatBufferName": "List",
+            "Type": "Container"
+        },
+        "string":
+        {
+            "CppName": "std::string",
+            "CppInclude": "string",
+            "FlatBufferName": "string",
+            "PyName": "str",
+            "Type": "Primitive"
+        },
+        "size_t":
+        {
+            "CppName": "std::size_t",
+            "CppInclude": "cstddef",
+            "FlatBufferName": "uint64",
+            "PyName": "int",
+            "Type": "Primitive"
+        },
+        "int8_t":
+        {
+            "CppName": "int8_t",
+            "PyName": "int",
+            "FlatBufferName": "int8",
+            "Type": "Primitive"
+        },
+        "uint8_t":
+        {
+            "CppName": "uint8_t",
+            "PyName": "int",
+            "FlatBufferName": "uint8",
+            "Type": "Primitive"
+        },
+        "int16_t":
+        {
+            "CppName": "int16_t",
+            "PyName": "int",
+            "FlatBufferName": "int16",
+            "Type": "Primitive"
+        },
+        "uint16_t":
+        {
+            "CppName": "uint16_t",
+            "PyName": "int",
+            "FlatBufferName": "uint16",
+            "Type": "Primitive"
+        },
+        "int32_t":
+        {
+            "CppName": "int32_t",
+            "PyName": "int",
+            "FlatBufferName": "int32",
+            "Type": "Primitive"
+        },
+        "uint32_t":
+        {
+            "CppName": "uint32_t",
+            "PyName": "int",
+            "FlatBufferName": "uint32",
+            "Type": "Primitive"
+        },
+        "int64_t":
+        {
+            "CppName": "int64_t",
+            "PyName": "int",
+            "FlatBufferName": "int64",
+            "Type": "Primitive"
+        },
+        "uint64_t":
+        {
+            "CppName": "uint64_t",
+            "PyName": "int",
+            "FlatBufferName": "uint64",
+            "Type": "Primitive"
+        },
+        "vector":
+        {
+            "CppName": "std::vector",
+            "CppInclude": "vector",
+            "PyName": "List",
+            "PyInclude": "List",
+            "FlatBufferName": "List",
+            "Type": "Container"
+        }
+    }
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tmfxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../org.eclipse.tracecompass.tmf.analysis.xml.core/src/org/eclipse/tracecompass/tmf/analysis/xml/core/module/xmlDefinition.xsd">
+
+<!--
+This is a State Provider file for Trace Compass (Preferences->Tracing->XML Analyses->Import).
+It creates a simple state machine for every MCF topic representing its current value by means of the corresponding
+value id.
+
+Copyright (c) 2024 Accenture
+-->
+
+<stateProvider version="0" id="mcf.value_store.state">
+
+<head>
+    <label value="Value store state analysis" />
+</head>
+
+<eventHandler eventName="port_write">
+    <stateChange>
+        <stateAttribute type="constant" value="Topics" />
+        <stateAttribute type="eventField" value="port.topic" />
+        <stateValue type="eventField" value="value_id" />
+    </stateChange>
+</eventHandler>
+
+</stateProvider>
+</tmfxml>
+

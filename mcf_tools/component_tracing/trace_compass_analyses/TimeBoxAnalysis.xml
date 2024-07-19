@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tmfxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../tools/nvprof2ctf/analyses/xmlDefinition.xsd">
+
+    <!--
+    This is an analysis file for Trace Compass (Preferences->Tracing->XML Analyses->Import).
+    It creates a state machine for the time box component inputs and outputs.
+
+    Copyright (c) 2024 Accenture
+    -->
+    <pattern id="mcf.time_box_monitor.pattern" version="0">
+        <head>
+            <label value="Time box monitor"/>
+            <viewLabelPrefix value="Time box execution"/>
+        </head>
+        <patternHandler>
+            <action id="save_context">
+                <stateChange>
+                    <stateAttribute type="constant" value="#CurrentScenario"/>
+                    <stateAttribute type="constant" value="box.id"/>
+                    <stateValue type="eventField" value="box_id"/>
+                </stateChange>
+            </action>
+
+            <action id="run_timebox">
+                <stateChange>
+                    <stateAttribute type="constant" value="#CurrentScenario"/>
+                    <stateAttribute type="constant" value="active_box"/>
+                    <stateValue type="eventField" value="box_name"/>
+                </stateChange>
+                <stateChange>
+                    <stateAttribute type="constant" value="Timebox"/>
+                    <stateAttribute type="eventField" value="box_name"/>
+                    <stateAttribute type="constant" value="#CurrentScenario"/>
+                    <stateValue type="eventField" value="completion_status_id"/>
+                </stateChange>
+            </action>
+
+            <action id="stop_timebox">
+                <stateChange>
+                    <stateAttribute type="constant" value="Timebox"/>
+                    <stateAttribute type="eventField" value="box_name"/>
+                    <stateAttribute type="constant" value="#CurrentScenario"/>
+                    <stateValue type="null"/>
+                </stateChange>
+                <stateChange>
+                    <stateAttribute type="constant" value="#CurrentScenario"/>
+                    <stateAttribute type="constant" value="active_box"/>
+                    <stateValue type="null"/>
+                </stateChange>
+            </action>
+
+            <action id="create_segment">
+                <segment>
+                    <segType>
+                        <segName>
+                            <stateValue type="eventField" value="box_name"/>
+                        </segName>
+                    </segType>
+                    <segContent>
+                        <segField name="BoxID" type="long">
+                            <stateValue type="eventField" value="box_id"/>
+                        </segField>
+                    </segContent>
+                </segment>
+            </action>
+
+            <test id="box_id_match">
+                <if>
+                    <condition>
+                        <stateValue type="query">
+                            <stateAttribute type="constant" value="#CurrentScenario"/>
+                            <stateAttribute type="constant" value="box.id"/>
+                        </stateValue>
+                        <stateValue type="eventField" value="box_id"/>
+                    </condition>
+                </if>
+            </test>
+
+            <fsm id="box_state">
+                <initialState>
+                    <transition event="time_box_start" target="run" action="save_context:run_timebox"/>
+                </initialState>
+                <state id="run">
+                    <transition event="time_box_end" cond="box_id_match" target="end"
+                                action="create_segment:stop_timebox"/>
+                </state>
+                <final id="end"/>
+            </fsm>
+        </patternHandler>
+    </pattern>
+
+    <timeGraphView id="mcf.time_box_monitor.timegraph">
+        <head>
+            <analysis id="mcf.time_box_monitor.pattern"/>
+            <label value="Time box graph"/>
+        </head>
+
+        <definedValue name="Finished Safely" value="0" color="#118811"/>
+        <definedValue name="Finished Unsafely" value="1" color="#f54242"/>
+        <definedValue name="Unfinished Lost Event" value="2" color="#fcba03"/>
+
+        <entry path="scenarios/box_state/*/Timebox/*">
+            <display type="self"/>
+        </entry>
+    </timeGraphView>
+
+</tmfxml>

@@ -1,0 +1,13 @@
+# Expands when the file is configured and allows the use of relocatable paths prefixed with PACKAGE_
+@PACKAGE_INIT@
+
+# Allow downstream packages to find transitive dependencies of McfCore
+include(CMakeFindDependencyMacro)
+find_dependency(msgpack)
+find_dependency(spdlog)
+find_dependency(jsoncpp)
+
+include("${CMAKE_CURRENT_LIST_DIR}/McfCoreTargets.cmake")
+
+# Ensure that all requested, non-optional components have been found.
+check_required_components(McfCore)

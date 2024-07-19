@@ -1,0 +1,216 @@
+{
+    "Doc": "Test of each allowed primitive type",
+    "Kind": "ExtMemValue<uint8_t>",
+    "Attributes":
+    {
+        "test_bool":
+        {
+            "Type": "bool",
+            "Doc": "Test type bool"
+        },
+        "test_bool_default":
+        {
+            "Type": "bool",
+            "DefaultValue": true,
+            "Doc": "Test type bool"
+        },
+        "test_double":
+        {
+            "Type": "double",
+            "Doc": "Test type double"
+        },
+        "test_double_default":
+        {
+            "Type": "double",
+            "DefaultValue": 1.79769313486231570E+308,
+            "Doc": "Test type double"
+        },
+        "test_float":
+        {
+            "Type": "float",
+            "Doc": "Test type float"
+        },
+        "test_float_default":
+        {
+            "Type": "float",
+            "DefaultValue": 3.40282347E+38,
+            "Doc": "Test type float"
+        },
+        "test_int":
+        {
+            "Type": "int",
+            "Doc": "Test type int"
+        },
+        "test_int_default":
+        {
+            "Type": "int",
+            "DefaultValue": 3,
+            "Doc": "Test type int"
+        },
+        "test_int8_t":
+        {
+            "Type": "int8_t",
+            "Doc": "Test type int8_t"
+        },
+        "test_int8_t_default":
+        {
+            "Type": "int8_t",
+            "DefaultValue": -120,
+            "Doc": "Test type int8_t"
+        },
+        "test_uint8_t":
+        {
+            "Type": "uint8_t",
+            "Doc": "Test type uint8_t"
+        },
+        "test_uint8_t_default":
+        {
+            "Type": "uint8_t",
+            "DefaultValue": 200,
+            "Doc": "Test type uint8_t"
+        },
+        "test_int16_t":
+        {
+            "Type": "int16_t",
+            "Doc": "Test type int16_t"
+        },
+        "test_int16_t_default":
+        {
+            "Type": "int16_t",
+            "DefaultValue": -300,
+            "Doc": "Test type int16_t"
+        },
+        "test_uint16_t":
+        {
+            "Type": "uint16_t",
+            "Doc": "Test type uint16_t"
+        },
+        "test_uint16_t_default":
+        {
+            "Type": "uint16_t",
+            "DefaultValue": 300,
+            "Doc": "Test type uint16_t"
+        },
+        "test_int32_t":
+        {
+            "Type": "int32_t",
+            "Doc": "Test type int32_t"
+        },
+        "test_int32_t_default":
+        {
+            "Type": "int32_t",
+            "DefaultValue": -75535,
+            "Doc": "Test type int32_t"
+        },
+        "test_uint32_t":
+        {
+            "Type": "uint32_t",
+            "Doc": "Test type uint32_t"
+        },
+        "test_uint32_t_default":
+        {
+            "Type": "uint32_t",
+            "DefaultValue": 3147483647,
+            "Doc": "Test type uint32_t"
+        },
+        "test_int64_t":
+        {
+            "Type": "int64_t",
+            "Doc": "Test type int64_t"
+        },
+        "test_int64_t_default":
+        {
+            "Type": "int64_t",
+            "DefaultValue": -4147483647,
+            "Doc": "Test type int64_t"
+        },
+        "test_uint64_t":
+        {
+            "Type": "uint64_t",
+            "Doc": "Test type uint64_t"
+        },
+        "test_uint64_t_default":
+        {
+            "Type": "uint64_t",
+            "DefaultValue": 10147483647,
+            "Doc": "Test type uint64_t"
+        },
+        "test_string":
+        {
+            "Type": "string",
+            "Doc": "Test type string"
+        },
+        "test_string_default":
+        {
+            "Type": "string",
+            "DefaultValue": "test_init",
+            "Doc": "Test type string"
+        },
+        "test_size_t":
+        {
+            "Type": "size_t",
+            "Doc": "Test type size_t"
+        },
+        "test_size_t_default":
+        {
+            "Type": "size_t",
+            "DefaultValue": 12,
+            "Doc": "Test type size_t"
+        },
+        "test_map":
+        {
+            "Type": "map<string, float>",
+            "Doc": "Test type map"
+        },
+        "test_map_default":
+        {
+            "Type": "map<string, float>",
+            "DefaultValue": {"test_string":  0.0, "b":  1.123},
+            "Doc": "Test type map"
+        },
+        "test_pair":
+        {
+            "Type": "pair<int, int>",
+            "Doc": "Test type pair"
+        },
+        "test_pair_default":
+        {
+            "Type": "pair<int, int>",
+            "DefaultValue": [2, 3],
+            "Doc": "Test type pair"
+        },
+        "test_pair2":
+        {
+            "Type": "pair<string, float>",
+            "Doc": "Test type pair"
+        },
+        "test_pair2_default":
+        {
+            "Type": "pair<string, float>",
+            "DefaultValue": ["test", 3.35],
+            "Doc": "Test type pair"
+        },
+        "test_set":
+        {
+            "Type": "set<int>",
+            "Doc": "Test type set"
+        },
+        "test_set_default":
+        {
+            "Type": "set<int>",
+            "DefaultValue": [0, 1, 2, 3, 4],
+            "Doc": "Test type set"
+        },
+        "test_vector":
+        {
+            "Type": "vector<int>",
+            "Doc": "Test type vector"
+        },
+        "test_vector_default":
+        {
+            "Type": "vector<int>",
+            "DefaultValue": [0, 1, 2, 3, 4, 5],
+            "Doc": "Test type vector"
+        }
+    }
+}

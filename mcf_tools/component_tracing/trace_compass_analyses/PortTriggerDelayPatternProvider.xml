@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tmfxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="xmlDefinition.xsd">
+
+<!--
+This is a Pattern Provider file for Trace Compass (Preferences->Tracing->XML Analyses->Import).
+It tracks component trigger activations until the corresponding trigger handler has started execution and can
+thus be used to obtain trigger delay statistics.
+
+Copyright (c) 2024 Accenture
+-->
+
+<pattern version="0" id="mcf.component.port.trigger_delay_pattern">
+
+<head>
+    <label value="Port trigger delay analysis" />
+</head>
+
+
+<patternHandler>
+
+    <test id="component_topic_match">
+        <if>
+            <and>
+                <condition>
+                    <stateValue type="eventField" value="component" />
+                    <stateValue type="query">
+                        <stateAttribute type="constant" value="#CurrentScenario" />
+                        <stateAttribute type="constant" value="component" />
+                    </stateValue>
+                </condition>
+                <condition>
+                    <stateValue type="eventField" value="trigger.topic" />
+                    <stateValue type="query">
+                        <stateAttribute type="constant" value="#CurrentScenario" />
+                        <stateAttribute type="constant" value="topic" />
+                    </stateValue>
+                </condition>
+            </and>
+        </if>
+    </test>
+
+    <action id="component_triggered">
+        <stateChange>
+            <stateAttribute type="constant" value="#CurrentScenario" />
+            <stateAttribute type="constant" value="component" />
+            <stateValue type="eventField" value="component" />
+        </stateChange>
+        <stateChange>
+            <stateAttribute type="constant" value="#CurrentScenario" />
+            <stateAttribute type="constant" value="topic" />
+            <stateValue type="eventField" value="trigger.topic" />
+        </stateChange>
+    </action>
+
+    <action id="handler_started">
+        <segment>
+            <segType>
+                <segName>
+                    <stateValue type="query">
+                        <stateAttribute type="constant" value="#CurrentScenario" />
+                        <stateAttribute type="constant" value="component" />
+                    </stateValue>
+                </segName>
+            </segType>
+        </segment>
+    </action>
+
+    <fsm id="port trigger latency" initial="start">
+        <state id="start">
+            <transition event="port_trigger_act" target="pending" action="component_triggered" saveStoredFields="true" />
+        </state>
+        <state id="pending">
+            <transition event ="port_handler_start" cond="component_topic_match" target="end" action="handler_started" saveStoredFields="true" clearStoredFields="true" />
+            <transition event="port_trigger_act" cond="component_topic_match" target="pending" saveStoredFields="true" />
+        </state>
+        <final id="end" />
+    </fsm>
+</patternHandler>
+
+</pattern>
+</tmfxml>
+

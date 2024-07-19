@@ -1,0 +1,9 @@
+# Expands when the file is configured and allows the use of relocatable paths prefixed with PACKAGE_
+@PACKAGE_INIT@
+
+find_dependency(cppzmq REQUIRED)
+
+include("${CMAKE_CURRENT_LIST_DIR}/McfRemoteShmemTargets.cmake")
+
+# Ensure that all requested, non-optional components have been found.
+check_required_components(McfRemoteShmem)

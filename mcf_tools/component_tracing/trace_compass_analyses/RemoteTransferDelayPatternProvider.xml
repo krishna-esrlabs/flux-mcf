@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tmfxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="xmlDefinition.xsd">
+
+<!--
+This is a Pattern Provider file for Trace Compass (Preferences->Tracing->XML Analyses->Import).
+It tracks the time of remote_transfer_start events to remote_transfer_end events
+
+Copyright (c) 2024 Accenture
+-->
+
+<pattern version="0" id="mcf.component.remote_transfer_time_pattern">
+
+<head>
+    <label value="Remote transfer time analysis" />
+</head>
+
+
+<patternHandler>
+
+    <test id="component_topic_match"> <!-- checks if componetn name matechs -->
+        <if>
+            <and> <!-- two conditions will follow, and them -->
+                <condition>
+                    <stateValue type="eventField" value="component" />
+                    <stateValue type="query">  <!-- query the state of the fsm -->
+                        <stateAttribute type="constant" value="#CurrentScenario" />
+                        <stateAttribute type="constant" value="component" /> <!-- type means event field -->
+                    </stateValue>
+                </condition>
+                <condition>
+                    <stateValue type="eventField" value="description" />
+                    <stateValue type="query">
+                        <stateAttribute type="constant" value="#CurrentScenario" />
+                        <stateAttribute type="constant" value="description" />
+                    </stateValue>
+                </condition>
+            </and>
+        </if>
+    </test>
+
+    <action id="remote_transfer_started">
+        <stateChange>
+            <stateAttribute type="constant" value="#CurrentScenario" /> <!-- number of current scenario, id of state machine -->
+            <stateAttribute type="constant" value="component" />   <!-- set field state compontet to value of eventfield.component -->
+            <stateValue type="eventField" value="component" />
+        </stateChange>
+        <stateChange>
+            <stateAttribute type="constant" value="#CurrentScenario" />
+            <stateAttribute type="constant" value="description" /> <!-- set field topic to to the trigger topic -->
+            <stateValue type="eventField" value="description" />
+        </stateChange>
+    </action>
+
+    <action id="remote_transfer_ended">
+        <segment>
+            <segType>
+                <segName>
+                    <stateValue type="query"> <!-- register this analsys under that name -->
+                        <stateAttribute type="constant" value="#CurrentScenario" />
+                        <stateAttribute type="constant" value="component" />
+                    </stateValue>
+                </segName>
+            </segType>
+        </segment>
+    </action>
+
+    <fsm id="remote_transfer time" initial="start">
+        <state id="start">
+            <transition event="remote_transfer_start" target="pending" action="remote_transfer_started" saveStoredFields="true" />
+        </state>
+        <state id="pending"> <!-- two possible transitons -->
+            <transition event ="remote_transfer_end" cond="component_topic_match" target="end" action="remote_transfer_ended" saveStoredFields="true" clearStoredFields="true" />
+            <transition event="remote_transfer_start" cond="component_topic_match" target="pending" saveStoredFields="true" /> <!-- another trigger activation, stay in pending -->
+        </state>
+        <final id="end" />
+    </fsm>
+</patternHandler>
+
+</pattern>
+</tmfxml>
+

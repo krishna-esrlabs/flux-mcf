@@ -1,0 +1,10 @@
+Project default: Lib {
+
+  LibraryConfig Lib {
+    Files "src/*.cpp"
+
+    IncludeDir "include", inherit: true
+
+    Dependency mcf_core
+  }
+}

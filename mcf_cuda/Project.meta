@@ -1,0 +1,40 @@
+Project default: Lib {
+
+  ExecutableConfig BuildLib {
+    Files "src/*.cpp"
+    IncludeDir "include/"
+
+    ArtifactName "libmcf_cuda.so"
+    PostSteps {
+      CommandLine "cp $(OutputDir)/$(ArtifactName) $(OutputDir, $(MainProjectName), $(MainConfigName))$(/)"
+    }
+
+    Toolchain {
+      Compiler CPP {
+        Flags add: "-fPIC"
+      }
+      Linker {
+        Flags add: "-fPIC -shared"
+        Flags add: "-Wl,--version-script=$(ProjectDir)/libexports.txt"
+      }
+    }
+    Dependency mcf_core, config: Lib
+  }
+
+  LibraryConfig Lib {
+    IncludeDir "include/", inherit: true
+
+    ExternalLibrarySearchPath "$(OutputDir, mcf_cuda, BuildLib)"
+    ExternalLibrary "mcf_cuda"
+
+    Dependency config: BuildLib
+  }
+
+  ExecutableConfig UnitTestBase {
+    Files "test/*.cpp"
+
+    Dependency config: Lib
+    Dependency googletest
+  }
+}
+

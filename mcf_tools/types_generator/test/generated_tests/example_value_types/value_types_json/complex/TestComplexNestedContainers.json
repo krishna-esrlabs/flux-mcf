@@ -1,0 +1,70 @@
+{
+    "Doc": "Test of each allowed primitive type",
+    "Kind": "Value",
+    "Attributes":
+    {
+        "test_pair_complex_different_directories":
+        {
+            "Type": "pair<simple::TestPrimitives, complex::TestComplexStruct>",
+            "Doc": "Test type pair"
+        },
+        "test_pair_complex_nested":
+        {
+            "Type": "pair<pair<simple::TestEnum, complex::TestComplex>, pair<pair<simple::TestPrimitives, simple::TestContainers>, complex::TestComplexContainers>>",
+            "Doc": "Test type pair"
+        },
+        "test_pair_complex_nested_containers":
+        {
+            "Type": "pair<map<string, complex::TestComplexStruct>, pair<string, map<string, vector<complex::TestComplexContainers>>>>",
+            "Doc": "Test type pair"
+        },
+
+        "test_map_complex":
+        {
+            "Type": "map<string, simple::TestContainers>",
+            "Doc": "Test type map"
+        },
+        "test_map_complex_different_directory":
+        {
+            "Type": "map<string, complex::TestComplex>",
+            "Doc": "Test type map"
+        },
+        "test_map_complex_container_value":
+        {
+            "Type": "map<string, pair<complex::TestComplexContainers, complex::TestComplex>>",
+            "Doc": "Test type map"
+        },
+        "test_map_complex_nested":
+        {
+            "Type": "map<string, map<string, map<string, complex::TestComplexStruct>>>",
+            "Doc": "Test type map"
+        },
+        "test_map_complex_nested_containers":
+        {
+            "Type": "map<string, map<string, pair<simple::TestEnum, set<complex::TestComplexContainers>>>>",
+            "Doc": "Test type map"
+        },
+
+        "test_vector_complex_nested":
+        {
+            "Type": "vector<vector<vector<complex::TestComplex>>>",
+            "Doc": "Test type vector"
+        },
+        "test_vector_complex_nested_containers":
+        {
+            "Type": "vector<pair<complex::TestComplexContainers, vector<map<string, set<complex::TestComplexStruct>>>>>",
+            "Doc": "Test type vector"
+        },
+
+        "test_set_complex_nested":
+        {
+            "Type": "set<vector<vector<complex::TestComplexStruct>>>",
+            "Doc": "Test type set"
+        },
+        "test_set_complex_nested_containers":
+        {
+            "Type": "set<pair<complex::TestComplexContainers, vector<map<string, set<complex::TestComplex>>>>>",
+            "Doc": "Test type set"
+        }
+    }
+}

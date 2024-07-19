@@ -1,0 +1,11 @@
+{
+    "Doc": "Value containing a single integer",
+    "Kind": "Value",
+    "Attributes": {
+        "mode": {
+            "Type": "int",
+            "Doc": "Scalar value"
+        }
+    }
+}
+

@@ -1,0 +1,58 @@
+{
+    "Doc": "Basic example struct",
+    "Kind": "Struct",
+    "Attributes": {
+        "field0": {
+            "Type": "int",
+            "DefaultValue": 10,
+            "Doc": "Example field 0"
+        },
+        "field1": {
+            "Type": "int",
+            "Doc": "Example field 1"
+        },
+        "field2": {
+            "Type": "float",
+            "DefaultValue": 2.5,
+            "Doc": "Example field 2"
+        },
+        "field3": {
+            "Type": "float",
+            "Doc": "Example field 3"
+        },
+        "field4": {
+            "Type": "string",
+            "DefaultValue": "test_string",
+            "Doc": "Example field 4"
+        },
+        "field5": {
+            "Type": "string",
+            "Doc": "Example field 5"
+        },
+        "field6":
+        {
+            "Type": "vector<int>",
+            "Doc": "Example field 6"
+        },
+        "field7":
+        {
+            "Type": "map<string, float>",
+            "Doc": "Example field 7"
+        },
+        "field8":
+        {
+            "Type": "pair<int, int>",
+            "Doc": "Example field 8"
+        },
+        "field9":
+        {
+            "Type": "pair<string, float>",
+            "Doc": "Example field 9"
+        },
+        "field10":
+        {
+            "Type": "set<int>",
+            "Doc": "Example field 10"
+        }
+    }
+}

@@ -1,0 +1,37 @@
+{
+  "doc": [
+    "Specify the start and end time of time range(s) which will be used to filter events",
+    "from the input record.bin file(s). The filtered events within a time range and on",
+    "selected topics will be played back at the original times (as specified in the",
+    "trace.bin file(s)). The first time range will begin immediately, and each",
+    "subsequent time range will begin <WaitTimeMs> milliseconds after the previous time",
+    "range, such that the time between time ranges can be condensed.",
+    "   StartTime (microseconds since 1970): Start of time range.",
+    "   EndTime (microseconds since 1970): End of time range.",
+    "   WaitTimeMs (milliseconds): Wait time between the end of the current time range",
+    "                              and beginning of the next time range.",
+    "   IncludeTopics: List of topics which will be included."],
+  "PlaybackEventInjection": [
+    {
+      "StartTime": 1619440739358149,
+      "EndTime": 1619440739388149,
+      "WaitTimeMs": 5000,
+      "IncludeTopics": [
+        "/images/stereo/left",
+        "/images/stereo/right",
+        "/images/stereo/leftPerspective",
+        "/images/stereo/rightPerspective"
+      ]
+    },
+
+    {
+      "StartTime": 1616590150479845,
+      "EndTime": 1616590150721072,
+      "WaitTimeMs": 0,
+      "IncludeTopics": [
+        "/images/stereo/left",
+        "/images/stereo/right"
+      ]
+    }
+  ]
+}

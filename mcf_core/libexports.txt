@@ -1,0 +1,12 @@
+{
+ global:
+    _ZN3mcf15componentLoggerE;
+    _ZN3mcf29gComponentTraceEventGeneratorE;
+    _ZN3mcf17loggerAccessMutexE;
+    _ZN3mcf9mcfLoggerE;
+    _ZN3mcf11consoleSinkE;
+    _ZTHN3mcf29gComponentTraceEventGeneratorE;
+    _ZTHN3mcf15componentLoggerE;
+
+ local: *;
+};

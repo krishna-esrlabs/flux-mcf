@@ -1,0 +1,97 @@
+Project default: Lib {
+
+  ExecutableConfig BuildSO {
+    Files "src/ComponentLoggerGlobals.cpp"
+    Files "src/ComponentTraceGlobals.cpp"
+
+    ArtifactName "libmcf_logger_tracer.so"
+    PostSteps {
+      CommandLine "cp $(OutputDir)/$(ArtifactName) $(OutputDir, $(MainProjectName), $(MainConfigName))$(/)"
+    }
+
+    Toolchain {
+      Linker {
+        Flags add: "-shared"
+        Flags add: "-Wl,--version-script=$(ProjectDir)/libexports.txt"
+      }
+    }
+  }
+
+  CustomConfig BuildDocumentation {
+    # Add a default toolchain to be independent from adapts
+    DefaultToolchain GCC {
+      Compiler CPP {
+        Flags "-Wall"
+      }
+    }
+    # Main step is the Doxygen build. Post-steps are, if necessary, Sphinx builds.
+    # Required dependencies:
+    # Doxygen
+    # Sphinx
+    # breathe
+    # exhale
+    # Doxygen is available through the package manager, the rest can be installed via
+    # `pip install exhale`
+    CommandLine "cd .. && doxygen", independent: true, echo: off
+
+    PostSteps {
+      CommandLine "cd .. && sphinx-build -b html -Dbreathe_projects.MCF=xml docs docs/sphinx"
+    }
+  }
+
+  LibraryConfig Lib {
+    Files "src/*.cpp"
+    Files "src/util/*.cpp"
+    ExcludeFiles "src/ComponentLoggerGlobals.cpp"
+    ExcludeFiles "src/ComponentTraceGlobals.cpp"
+
+    IncludeDir "include", inherit: true
+
+    Dependency config: BuildSO
+
+    Dependency "msgpack-c"
+    Dependency "zmq"
+    Dependency "spdlog"
+    Dependency json
+
+    ExternalLibrary "dl"
+
+    ExternalLibrarySearchPath "$(OutputDir, mcf_core, BuildSO)"
+    ExternalLibrary "mcf_logger_tracer"
+    
+    # for dynamic objects
+    Toolchain {
+      Compiler CPP {
+        Flags add: "-fPIC"
+      }
+    }
+  }
+
+  ExecutableConfig TestPluginDSO {
+    Files "test/src/plugin_dso.cpp"
+    IncludeDir "test/include"
+
+    Dependency config: Lib
+    Toolchain {
+      Compiler CPP {
+        Flags add: "-fPIC"  # generate position independent code
+      }
+      Linker {
+        Flags add: "-fPIC -shared -Wl,-soname,plugin_dso.so"
+      }
+    }
+    ArtifactName "plugin_dso.so"
+  }
+
+  ExecutableConfig UnitTestBase {
+    Files "test/src/*.cpp"
+    Files "test/src/util/*.cpp"
+    ExcludeFiles "test/src/plugin_dso.cpp"
+    IncludeDir "test/include"
+
+    Dependency config: Lib
+    Dependency config: TestPluginDSO
+    Dependency googletest
+  }
+
+}

@@ -1,0 +1,9 @@
+{ "ImageFilterCudaComponent":
+    {
+        "ConsoleLogLevel": "info",
+        "ValueStoreLogLevel": "info",
+
+        "CudaDeviceId": 0,
+        "BoxFilterKernelSize": 11
+    }
+}

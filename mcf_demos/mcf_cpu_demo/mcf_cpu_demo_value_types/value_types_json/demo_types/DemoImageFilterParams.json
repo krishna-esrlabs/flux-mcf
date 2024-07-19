@@ -1,0 +1,13 @@
+{
+    "Doc": "Parameters for box filter",
+    "Kind": "Value",
+    "Attributes":
+    {
+        "kernelSize":
+        {
+            "Type": "uint16_t",
+            "DefaultInit" : 3,
+            "Doc": "Size of kernel used by box filter"
+        }
+    }
+}

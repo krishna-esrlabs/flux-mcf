@@ -1,0 +1,32 @@
+Project default: Debug {
+
+  ExecutableConfig Debug {
+    ArtifactName "example_value_types_test"
+
+    PreSteps {
+        CommandLine "python3 ../../../tester_generator.py -i ../example_value_types/value_types_json  -o . -m ../../../../../../../modules/mcf -x $(OutputDir)/$(ArtifactName)", validExitCodes: [0]
+    }
+
+    Files "src/*.cpp"
+    Files "main_test/src/*.cpp"
+
+    IncludeDir "include"
+
+    # ml/common dependencies
+    Dependency mcf_core
+    Dependency mcf_remote
+    Dependency example_value_types
+    Dependency example_value_types_secondary
+
+    CleanSteps {
+        CommandLine "python3 ../../../clean_generated_tests.py -o ."
+    }
+
+    DefaultToolchain GCC {
+      Linker {
+        # include absolute path to library directory
+        Flags add: "-Wl,-rpath,$(MainProjectDir)$(/)$(OutputDir, $(MainProjectName), $(MainConfigName))"
+      }
+    }
+  }
+}

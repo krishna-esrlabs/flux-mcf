@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tmfxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="xmlDefinition.xsd">
+
+<!--
+This is a Pattern Provider file for Trace Compass (Preferences->Tracing->XML Analyses->Import).
+It tracks execution times and can thus be used to obtain value store writing/reading time statistics.
+
+Copyright (c) 2024 Accenture
+-->
+
+<pattern version="1" id="mcf.value_store.read.execution_time_pattern">
+
+<head>
+    <label value="Value store read time analysis" />
+</head>
+
+<patternHandler>
+    <test id="component_desc_match">
+        <if>
+            <and>
+                <condition> 
+                    <stateValue type="eventField" value="component" />
+                    <stateValue type="query">
+                        <stateAttribute type="constant" value="#CurrentScenario" />
+                        <stateAttribute type="constant" value="component" />
+                    </stateValue>
+                </condition>
+                <condition>
+                    <stateValue type="eventField" value="description" />
+                    <stateValue type="query">
+                        <stateAttribute type="constant" value="#CurrentScenario" />
+                        <stateAttribute type="constant" value="description" />
+                    </stateValue>
+                </condition>
+            </and>
+        </if>
+    </test>
+
+    <test id="value_store_access">
+        <if>
+            <condition>
+                <stateValue type="eventField" value="description" />
+                <stateValue type="string" value="valueStoreRead"/>
+            </condition>
+        </if>
+    </test>
+    
+    <action id="time_start">
+        <stateChange>
+            <stateAttribute type="constant" value="#CurrentScenario" />
+            <stateAttribute type="constant" value="component" />
+            <stateValue type="eventField" value="component" />
+        </stateChange>
+        <stateChange>
+            <stateAttribute type="constant" value="#CurrentScenario" />
+            <stateAttribute type="constant" value="description" />
+            <stateValue type="eventField" value="description" />
+        </stateChange>
+    </action>
+
+    <action id="time_end">
+        <segment>
+            <segType>
+                <segName>
+                    <stateValue type="query">
+                        <stateAttribute type="constant" value="#CurrentScenario" />
+                        <stateAttribute type="constant" value="component" />
+                    </stateValue>
+                </segName>
+            </segType>
+        </segment>
+    </action>
+
+    <fsm id="execution" initial="start">
+        <state id="start">
+            <transition event="exec_start" cond="value_store_access" target="executing" action="time_start" saveStoredFields="true" />
+        </state>
+        <state id="executing">
+            <transition event="exec_end" cond="component_desc_match" target="end" action="time_end" saveStoredFields="true" clearStoredFields="true"/>
+        </state>
+        <final id="end" />
+    </fsm>
+</patternHandler>
+
+</pattern>
+</tmfxml>
+

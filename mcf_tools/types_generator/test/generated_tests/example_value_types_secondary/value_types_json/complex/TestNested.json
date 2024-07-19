@@ -1,0 +1,27 @@
+{
+    "Doc": "Test of each allowed primitive type",
+    "Kind": "Value",
+    "Attributes":
+    {
+        "test_enum":
+        {
+            "Type": "simple::TestEnum",
+            "Doc": "Test type enum"
+        },
+        "test_struct":
+        {
+            "Type": "simple::TestStruct",
+            "Doc": "Test type struct"
+        },
+        "test_primitives":
+        {
+            "Type": "simple::TestPrimitives",
+            "Doc": "Test type primitives"
+        },
+        "test_std_primitives":
+        {
+            "Type": "simple::TestContainers",
+            "Doc": "Test type std primitives"
+        }
+    }
+}

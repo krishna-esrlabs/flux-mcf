@@ -1,0 +1,8 @@
+{ "ImageFilterComponent":
+    {
+      "ConsoleLogLevel": "info",
+      "ValueStoreLogLevel": "info",
+
+      "BoxFilterKernelSize": 11
+    }
+}

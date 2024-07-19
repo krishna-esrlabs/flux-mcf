@@ -1,0 +1,25 @@
+{
+    "Doc": "3 dimensional point",
+    "Kind": "Value",
+    "Attributes":
+    {
+        "x":
+        {
+            "Type": "float",
+            "DefaultValue" : 0.0,
+            "Doc": "x coordinate"
+        },
+        "y":
+        {
+            "Type": "float",
+            "DefaultValue" : 0.0,
+            "Doc": "y coordinate"
+        },
+        "z":
+        {
+            "Type": "float",
+            "DefaultValue" : 0.0,
+            "Doc": "z coordinate"
+        }
+    }
+}

@@ -1,0 +1,34 @@
+{
+ global:
+    extern "C++" {
+        ## CudaCachingAllocator
+        mcf::cuda::gpuAllocator;
+
+        ## CudaExtMemValue
+        # Add * after class name to capture templates
+        mcf::CudaExtMemValue*::CudaExtMemValue*;    # Constructors
+        mcf::CudaExtMemValue*::?CudaExtMemValue*;   # Destructors
+        mcf::CudaExtMemValue*::Ptr*;
+        mcf::CudaExtMemValue*::extMemInit*;
+        mcf::CudaExtMemValue*::extMemSize*;
+        mcf::CudaExtMemValue*::operator?mcf::gen_array*;
+        mcf::CudaExtMemValue*::extMemInitialized*;
+
+        # Export extMemPtr but not extMemPtrImpl
+        mcf::CudaExtMemValue*::extMemPtr[!Impl]*;
+
+        ## GenArray
+        mcf::gen_array*::gen_array*;                # Constructors
+        mcf::gen_array*::?gen_array*;               # Destructors
+        mcf::gen_array*::size*;
+        mcf::gen_array*::swap*;
+        mcf::gen_array*::init*;
+        mcf::gen_array*::get*;
+        mcf::gen_array*::hasCopyOnDevice*;
+        mcf::gen_array*::isNull*;
+        mcf::deviceIdFromCuda*;
+    };
+
+ local:
+    *;
+};

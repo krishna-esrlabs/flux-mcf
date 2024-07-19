@@ -1,0 +1,17 @@
+{
+    "Doc": "Camera info containing pose of camera and image type output by camera.",
+    "Kind": "Value",
+    "Attributes":
+    {
+        "pose":
+        {
+            "Type": "odometry::Pose",
+            "Doc": "position"
+        },
+        "format":
+        {
+            "Type": "ImageFormat",
+            "Doc": "Format of image"
+        }
+    }
+}

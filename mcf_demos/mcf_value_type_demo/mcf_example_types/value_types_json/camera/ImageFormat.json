@@ -1,0 +1,8 @@
+{
+    "Doc": "Enum of possible image formats",
+    "Kind": "Enum",
+    "Attributes":
+    [
+        "RGB", "GRAY"
+    ]
+}

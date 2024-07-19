@@ -1,0 +1,62 @@
+{
+    "Doc": "Test of each allowed primitive type",
+    "Kind": "Value",
+    "Attributes":
+    {
+        "test_map":
+        {
+            "Type": "map<string, float>",
+            "Doc": "Test type map"
+        },
+        "test_map_default":
+        {
+            "Type": "map<string, float>",
+            "DefaultValue": {"a": 0.0, "b": 1.0},
+            "Doc": "Test type map"
+        },
+        "test_pair":
+        {
+            "Type": "pair<int, int>",
+            "Doc": "Test type pair"
+        },
+        "test_pair_default":
+        {
+            "Type": "pair<int, int>",
+            "DefaultValue": [2, 3],
+            "Doc": "Test type pair"
+        },
+        "test_pair2":
+        {
+            "Type": "pair<string, float>",
+            "Doc": "Test type pair"
+        },
+        "test_pair2_default":
+        {
+            "Type": "pair<string, float>",
+            "DefaultValue": ["test", 3.35],
+            "Doc": "Test type pair"
+        },
+        "test_set":
+        {
+            "Type": "set<int>",
+            "Doc": "Test type set"
+        },
+        "test_set_default":
+        {
+            "Type": "set<int>",
+            "DefaultValue": [0, 1, 2, 3, 4],
+            "Doc": "Test type set"
+        },
+        "test_vector":
+        {
+            "Type": "vector<int>",
+            "Doc": "Test type vector"
+        },
+        "test_vector_default":
+        {
+            "Type": "vector<int>",
+            "DefaultValue": [0, 1, 2, 3, 4, 5],
+            "Doc": "Test type vector"
+        }
+    }
+}

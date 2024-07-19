@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tmfxml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../org.eclipse.tracecompass.tmf.analysis.xml.core/src/org/eclipse/tracecompass/tmf/analysis/xml/core/module/xmlDefinition.xsd">
+
+<!--
+This is a State Provider file for Trace Compass (Preferences->Tracing->XML Analyses->Import).
+It creates a simple state machine and view for every MCF component representing its execution
+states and triggering topics.
+
+Copyright (c) 2024 Accenture
+-->
+
+
+<stateProvider version="0" id="mcf.component.state">
+
+<head>
+    <label value="Component execution state analysis" />
+</head>
+
+<definedValue name="EXECUTING_PORT_HANDLER" value="100" />
+<definedValue name="PENDING_TRIGGER" value="110" />
+<definedValue name="EXECUTING_MAIN_TRIGGER" value="120" />
+<definedValue name="EXECUTING_TIMED_SECTION" value="130" />
+
+<eventHandler eventName="exec_start">
+    <stateChange>
+        <if>
+            <condition>
+                <field name="description"/>
+                <stateValue type="string" value="triggerHandlers"/>
+            </condition>
+        </if>
+        <then>
+            <stateAttribute type="constant" value="Components" />
+            <stateAttribute type="eventField" value="component" />
+            <stateValue type="int" value="$EXECUTING_MAIN_TRIGGER" />
+        </then>
+    </stateChange>
+</eventHandler>
+
+<eventHandler eventName="exec_start">
+    <stateChange>
+        <if>
+            <not>
+                <condition>
+                    <field name="description"/>
+                    <stateValue type="string" value="triggerHandlers"/>
+                </condition>
+            </not>
+        </if>
+        <then>
+            <stateAttribute type="constant" value="Components" />
+            <stateAttribute type="eventField" value="component" />
+            <stateAttribute type="eventField" value="description" />
+            <stateValue type="int" value="$EXECUTING_TIMED_SECTION" />
+        </then>
+    </stateChange>
+</eventHandler>
+
+<eventHandler eventName="exec_end">
+    <stateChange>
+        <if>
+            <condition>
+                <field name="description"/>
+                <stateValue type="string" value="triggerHandlers"/>
+            </condition>
+        </if>
+        <then>
+            <stateAttribute type="constant" value="Components" />
+            <stateAttribute type="eventField" value="component" />
+            <stateValue type="null" />
+        </then>
+    </stateChange>
+</eventHandler>
+
+<eventHandler eventName="exec_end">
+    <stateChange>
+        <if>
+            <not>
+                <condition>
+                    <field name="description"/>
+                    <stateValue type="string" value="triggerHandlers"/>
+                </condition>
+            </not>
+        </if>
+        <then>
+            <stateAttribute type="constant" value="Components" />
+            <stateAttribute type="eventField" value="component" />
+            <stateAttribute type="eventField" value="description" />
+            <stateValue type="null" />
+        </then>
+    </stateChange>
+</eventHandler>
+
+<eventHandler eventName="port_trigger_act">
+    <stateChange>
+        <stateAttribute type="constant" value="Components" />
+        <stateAttribute type="eventField" value="component" />
+        <stateAttribute type="eventField" value="trigger.topic" />
+        <stateValue type="int" value="$PENDING_TRIGGER" />
+    </stateChange>
+</eventHandler>
+
+<eventHandler eventName="port_handler_start">
+    <stateChange>
+        <stateAttribute type="constant" value="Components" />
+        <stateAttribute type="eventField" value="component" />
+        <stateValue type="int" value="$EXECUTING_PORT_HANDLER" />
+    </stateChange>
+    <stateChange>
+        <stateAttribute type="constant" value="Components" />
+        <stateAttribute type="eventField" value="component" />
+        <stateAttribute type="eventField" value="trigger.topic" />
+        <stateValue type="null" />
+    </stateChange>
+</eventHandler>
+
+<eventHandler eventName="port_handler_end">
+    <stateChange>
+        <stateAttribute type="constant" value="Components" />
+        <stateAttribute type="eventField" value="component" />
+        <stateValue type="null" />
+    </stateChange>
+</eventHandler>
+
+</stateProvider>
+
+<timeGraphView id="mcf.component.state.timegraph">
+    <head>
+        <analysis id="mcf.component.state" />
+        <label value="MCF component state time graph" />
+    </head>
+
+    <definedValue name="Executing" value="100" color="#118811" />
+    <definedValue name="Triggered" value="110" color="#99743D" />
+    <definedValue name="Executing main trigger" value="120" color="#A2C9F0" />
+    <definedValue name="Executing timed section" value="130" color="#0000AA" />
+
+    <entry path="Components/*">
+        <display type="self" />
+        <entry path="*">
+            <display type="self" />
+        </entry>
+    </entry>
+</timeGraphView>
+
+</tmfxml>
+

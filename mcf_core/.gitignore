@@ -1,0 +1,5 @@
+.bake
+build/
+record.bin
+trace.bin
+record_extmem.bin

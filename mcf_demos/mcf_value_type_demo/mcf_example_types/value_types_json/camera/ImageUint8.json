@@ -1,0 +1,25 @@
+{
+    "Doc": "Image container",
+    "Kind": "ExtMemValue<uint8_t>",
+    "Attributes":
+    {
+        "width":
+        {
+            "Type": "uint16_t",
+            "DefaultValue" : 1920,
+            "Doc": "Width of image"
+        },
+        "height":
+        {
+            "Type": "uint16_t",
+            "DefaultValue" : 1080,
+            "Doc": "Height of image"
+        },
+        "format":
+        {
+            "Type": "ImageFormat",
+            "DefaultValue" : "RGB",
+            "Doc": "Format of image"
+        }
+    }
+}

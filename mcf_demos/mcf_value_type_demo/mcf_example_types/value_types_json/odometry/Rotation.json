@@ -1,0 +1,13 @@
+{
+    "Doc": "3 dimensional rotation matirx",
+    "Kind": "Struct",
+    "Attributes":
+    {
+        "rotation":
+        {
+            "Type": "vector<float>",
+            "DefaultValue" : [1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0],
+            "Doc": "3D rotation matrix"
+        }
+    }
+}

@@ -1,0 +1,20 @@
+Project default: Lib {
+
+  LibraryConfig Lib {
+
+    PreSteps {
+      CommandLine "python3 ../../../value_type_generator.py -i value_types_json -o_cpp include/ -o_py python -i_link ../example_value_types_secondary/value_types_json", validExitCodes: [0]
+    }
+
+    Files "src/*.cpp"
+
+    IncludeDir "include", inherit: true
+
+    Dependency types_generator
+    Dependency example_value_types_secondary
+
+    CleanSteps {
+        CommandLine "python3 ../../../clean_generated_value_types.py -o_cpp include -o_py python -i value_types_json"
+    }
+  }
+}

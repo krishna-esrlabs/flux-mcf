@@ -1,0 +1,32 @@
+{
+    "Doc": "Image container",
+    "Kind": "ExtMemValue<uint8_t>",
+    "Attributes":
+    {
+        "width":
+        {
+            "Type": "uint16_t",
+            "DefaultValue" : 0,
+            "Doc": "Width of image"
+        },
+        "height":
+        {
+            "Type": "uint16_t",
+            "DefaultValue" : 0,
+            "Doc": "Height of image"
+        },
+        "pitch":
+        {
+            "Type": "uint32_t",
+            "DefaultValue" : 0,
+            "Doc": "Pitch of image"
+        },
+        "timestamp":
+        {
+            "Type": "uint64_t",
+            "DefaultValue" : 0,
+            "Doc": "Timestamp of image (microseconds)"
+        }
+    }
+}
+ 

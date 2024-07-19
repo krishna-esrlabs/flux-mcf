@@ -1,0 +1,41 @@
+Project {
+
+  CustomConfig PyTest {
+    Dependency config: py_remote_service_test
+  }
+
+  ExecutableConfig py_remote_service_test {
+    Files "test/src/*.cpp"
+
+    Dependency CLI11
+    Dependency eigen
+    Dependency exception
+    Dependency json_helpers
+    Dependency mcf_core
+    Dependency mcf_remote
+    Dependency value_helpers
+    Dependency value_types
+
+    Set TestBinDir, value: "$(ProjectDir)$(/)test$(/)bin$(/)"
+    ArtifactName py_remote_service_test
+
+    # create output directories upfront, so that dependencies can copy their output into it
+    StartupSteps {
+      MakeDir "$(OutputDir)"
+      MakeDir "$(TestBinDir)"
+    }
+
+    # copy executable and mcf shared libraries to common target binary folder
+    PostSteps {
+        Copy "$(OutputDir)$(/)$(ArtifactName)", to: "$(TestBinDir)"
+        Copy "$(OutputDir, $(MainProjectName), $(MainConfigName))$(/)*.so", to: "$(TestBinDir)"
+    }
+
+    CleanSteps {
+        Remove "$(TestBinDir)"
+    }
+
+    # desired host type name
+    Set HostTypeName, value: "x86"
+  }
+}

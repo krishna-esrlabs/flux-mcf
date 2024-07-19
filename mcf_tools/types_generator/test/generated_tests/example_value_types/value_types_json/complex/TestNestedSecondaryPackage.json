@@ -1,0 +1,64 @@
+{
+    "Doc": "Test of each allowed primitive type",
+    "Kind": "Value",
+    "Attributes":
+    {
+        "test_nested_enum_secondary":
+        {
+            "Type": "example_value_types_secondary::complex::TestNested",
+            "Doc": "Test type struct"
+        },
+        "test_enum_secondary":
+        {
+            "Type": "example_value_types_secondary::simple::TestEnum",
+            "Doc": "Test type struct"
+        },
+        "test_enum_secondary_default":
+        {
+            "Type": "example_value_types_secondary::simple::TestEnum",
+            "DefaultValue": "VALUE1",
+            "Doc": "Test type struct"
+        },
+        "test_struct_secondary":
+        {
+            "Type": "example_value_types_secondary::simple::TestStruct",
+            "Doc": "Test type struct"
+        },
+        "test_primitive_secondarys":
+        {
+            "Type": "example_value_types_secondary::simple::TestPrimitives",
+            "Doc": "Test type primitives"
+        },
+        "test_std_primitives_secondary":
+        {
+            "Type": "example_value_types_secondary::simple::TestContainers",
+            "Doc": "Test type std primitives"
+        },
+        "test_enum":
+        {
+            "Type": "simple::TestEnum",
+            "Doc": "Test type enum"
+        },
+        "test_enum_default":
+        {
+            "Type": "simple::TestEnum",
+            "DefaultValue": "VALUE1",
+            "Doc": "Test type enum with default"
+        },
+        "test_struct":
+        {
+            "Type": "simple::TestStruct",
+            "Doc": "Test type struct"
+        },
+        "test_primitives":
+        {
+            "Type": "simple::TestPrimitives",
+            "Doc": "Test type primitives"
+        },
+        "test_containers":
+        {
+            "Type": "simple::TestContainers",
+            "Doc": "Test type std primitives"
+        }
+    }
+}

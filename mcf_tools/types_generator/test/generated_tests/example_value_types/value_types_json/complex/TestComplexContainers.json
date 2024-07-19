@@ -1,0 +1,116 @@
+{
+    "Doc": "Test of each allowed primitive type",
+    "Kind": "Value",
+    "Attributes":
+    {
+        "test_pair_complex_key":
+        {
+            "Type": "pair<simple::TestPrimitives, float>",
+            "Doc": "Test type pair"
+        },
+        "test_pair_complex_key_containers":
+        {
+            "Type": "pair<simple::TestContainers, float>",
+            "Doc": "Test type pair"
+        },
+        "test_pair_complex_key_struct":
+        {
+            "Type": "pair<simple::TestStruct, float>",
+            "Doc": "Test type pair"
+        },
+        "test_pair_complex_key_enum":
+        {
+            "Type": "pair<simple::TestEnum, float>",
+            "Doc": "Test type pair"
+        },
+        "test_pair_complex_value":
+        {
+            "Type": "pair<int, simple::TestPrimitives>",
+            "Doc": "Test type pair"
+        },
+        "test_pair_complex_value_containers":
+        {
+            "Type": "pair<int, simple::TestContainers>",
+            "Doc": "Test type pair"
+        },
+        "test_pair_complex_value_struct":
+        {
+            "Type": "pair<int, simple::TestStruct>",
+            "Doc": "Test type pair"
+        },
+        "test_pair_complex_value_enum":
+        {
+            "Type": "pair<int, simple::TestEnum>",
+            "Doc": "Test type pair"
+        },
+        "test_pair_complex_key_and_value":
+        {
+            "Type": "pair<simple::TestPrimitives, simple::TestContainers>",
+            "Doc": "Test type pair"
+        },
+        "test_pair_complex_key_and_value_enum":
+        {
+            "Type": "pair<simple::TestEnum, simple::TestEnum>",
+            "Doc": "Test type pair"
+        },
+        "test_pair_complex_key_and_value_mix":
+        {
+            "Type": "pair<simple::TestEnum, simple::TestContainers>",
+            "Doc": "Test type pair"
+        },
+
+        "test_map_complex_value":
+        {
+            "Type": "map<string, simple::TestStruct>",
+            "Doc": "Test type map"
+        },
+        "test_map_complex_value_enum":
+        {
+            "Type": "map<string, simple::TestEnum>",
+            "Doc": "Test type map"
+        },
+
+        "test_vector_complex":
+        {
+            "Type": "vector<simple::TestPrimitives>",
+            "Doc": "Test type vector"
+        },
+        "test_vector_containers":
+        {
+            "Type": "vector<simple::TestContainers>",
+            "Doc": "Test type vector"
+        },
+        "test_vector_struct":
+        {
+            "Type": "vector<simple::TestStruct>",
+            "Doc": "Test type vector"
+        },
+        "test_vector_complex_enum":
+        {
+            "Type": "vector<simple::TestEnum>",
+            "Doc": "Test type vector"
+        },
+
+        "test_set_complex":
+        {
+            "Type": "set<simple::TestPrimitives>",
+            "Doc": "Test type set"
+        },
+        "test_set_containers":
+        {
+            "Type": "set<simple::TestContainers>",
+            "Doc": "Test type set"
+        },
+        "test_set_struct":
+        {
+            "Type": "set<simple::TestStruct>",
+            "Doc": "Test type set"
+        },
+        "test_set_complex_enum":
+        {
+            "Type": "set<simple::TestEnum>",
+            "Doc": "Test type set"
+        }
+
+    }
+}
