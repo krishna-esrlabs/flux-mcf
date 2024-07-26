@@ -22,15 +22,15 @@ Dependencies can be installed in any of the following ways:
 * *(Option 1) Install dependencies with automated install script*: Run the install script to automatically install all dependencies. Dependency packages will downloaded to `mcf/deps/<package_name>` and installed to a user defined directory:
         
   ```
-  bash install_deps.sh <install_dir> <number_of_cores>
+  bash install_deps.sh <deps_install_dir> <number_of_cores>
   ```
 
   (Optional) To install dependencies required for build MCF with CUDA support:
   ```
-  bash install_cuda_deps.sh <install_dir> <number_of_cores>
+  bash install_cuda_deps.sh <deps_install_dir> <number_of_cores>
   ```
 
-* *(Option 2) Manually install the dependencies*: Ensure that the headers and libraries (where applicable) are either installed to system paths or add the paths to the cmake search path using the CMAKE_PREFIX_PATH cmake argument.  
+* *(Option 2) Manually install the dependencies*: Ensure that the headers and libraries (where applicable) are either installed to system paths or add the paths to the cmake search path using the CMAKE_PREFIX_PATH cmake argument.
 
 * *(Option 3) Install dependencies within Docker container*: Follow the instructions in the Docker [README](docker/README.md).
     
@@ -38,7 +38,7 @@ Dependencies can be installed in any of the following ways:
 * The path to the installed dependencies can either be added to the MCF cmake command in `-DCMAKE_INSTALL_PREFIX` or can be added to `$PATH`:
 
   ```
-  export PATH=$PATH:/path/to/install_dir
+  export PATH=$PATH:<deps_install_dir>
   ```
 
 * Install MCF:
@@ -47,8 +47,8 @@ Dependencies can be installed in any of the following ways:
   mkdir build
   cd build
   cmake .. \
-    -DCMAKE_INSTALL_PREFIX=/path/to/install/dir \                      # Directory where mcf will be installed
-    -DCMAKE_PREFIX_PATH="/path/to/deps/install;/path/to/other/dir \    # Directories in which dependencies are installed.
+    -DCMAKE_INSTALL_PREFIX=<mcf_install_dir> \                      # Directory where mcf will be installed
+    -DCMAKE_PREFIX_PATH="<deps_install_dir>;<path_to_other_dir>" \  # Directories in which dependencies are installed.
     -DBUILD_CUDA=TRUE \
     -DBUILD_REMOTE=TRUE \
     -DBUILD_TESTS=TRUE
@@ -61,7 +61,7 @@ are using the ld.bfd linker (as opposed to the gold linker for example).
 * Ensure that the install directory is on the LD_LIBRARY_PATH  (to make the change persist, add the command to your `.bashrc` file):
 
   ```
-  export LD_LIBRARY_PATH:$LD_LIBRARY_PATH:/path/to/install/dir
+  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:<mcf_install_dir>
   ```
 
 ### Installing MCF Value Type Generator
